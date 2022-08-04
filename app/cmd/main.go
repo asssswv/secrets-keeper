@@ -2,13 +2,16 @@ package main
 
 import (
 	"context"
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/viper"
 	"os"
 	"os/signal"
 	sc "secrets_keeper/app"
 	"secrets_keeper/app/pkg/handler"
+	"secrets_keeper/app/pkg/repository"
+	"secrets_keeper/app/pkg/service"
 	"syscall"
+
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
 
 func main() {
@@ -18,7 +21,12 @@ func main() {
 		logrus.Fatalf("error init configs: %s", err.Error())
 	}
 
-	handlers := handler.NewHandler()
+
+	mem := make(map[string]string)
+
+	repos := repository.NewRepository(mem)
+	services := service.NewService(repos)
+	handlers := handler.NewHandler(services)
 	srv := new(sc.Server)
 
 	go func() {

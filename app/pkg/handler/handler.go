@@ -1,15 +1,17 @@
 package handler
 
 import (
+	"secrets_keeper/app/pkg/service"
+
 	"github.com/gin-gonic/gin"
 )
 
 type Handler struct {
-	//services *service.Service
+	services *service.Service
 }
 
-func NewHandler() *Handler {
-	return &Handler{}
+func NewHandler(services *service.Service) *Handler {
+	return &Handler{services: services}
 }
 
 func (h *Handler) InitRoutes() *gin.Engine {
@@ -17,7 +19,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 
 	router.LoadHTMLFiles("templates/index.html")
-	router.GET("/", h.Home)
+	router.GET("/", h.GetIndexPage)
+	router.GET("/:key", h.GetMessage)
 
 	return router
 }
