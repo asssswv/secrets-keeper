@@ -9,12 +9,18 @@ type Keeper interface {
 	Set(key, message string) error
 }
 
+type KeyBuilder interface {
+	Get() string
+}
+
 type Service struct {
 	Keeper
+	KeyBuilder
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		Keeper: NewKeeperService(repos.Keeper),
+		KeyBuilder: NewKeyBuilderService(),
 	}
 }

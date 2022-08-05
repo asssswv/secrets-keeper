@@ -18,9 +18,9 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 	gin.SetMode(gin.ReleaseMode)
 
-	router.LoadHTMLFiles("templates/index.html")
+	router.LoadHTMLFiles("templates/index.html", "templates/key.html")
 	router.GET("/", h.GetIndexPage)
 	router.GET("/:key", h.GetMessage)
-
+	router.POST("/", h.SetMessage)
 	return router
 }
