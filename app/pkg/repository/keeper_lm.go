@@ -1,6 +1,8 @@
 package repository
 
-import "errors"
+import (
+	"errors"
+)
 
 type KeeperLocalMem struct {
 	mem map[string]string

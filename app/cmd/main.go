@@ -21,7 +21,6 @@ func main() {
 		logrus.Fatalf("error init configs: %s", err.Error())
 	}
 
-
 	mem := make(map[string]string)
 
 	repos := repository.NewRepository(mem)
