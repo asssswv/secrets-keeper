@@ -17,11 +17,14 @@ func (h *Handler) GetMessage(c *gin.Context) {
 	message, err := h.services.Keeper.Get(key)
 
 	if err != nil {
+
 		if err.Error() == "message not found" {
 			c.HTML(http.StatusNotFound, "404.html", gin.H{})
 			return
 		}
+
 		c.HTML(http.StatusInternalServerError, "500.html", gin.H{})
+		return
 	}
 
 	c.HTML(http.StatusOK, "message.html", gin.H{"message": message})
