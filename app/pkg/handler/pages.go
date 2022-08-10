@@ -32,9 +32,14 @@ func (h *Handler) GetMessage(c *gin.Context) {
 
 func (h *Handler) SetMessage(c *gin.Context) {
 	message := c.PostForm("message")
-	key := h.services.KeyBuilder.Get()
+	key, err := h.services.UUIDKeyBuilder.Get()
 
-	err := h.services.Keeper.Set(key, message)
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "500.html", gin.H{})
+		return
+	}
+
+	err = h.services.Keeper.Set(key, message)
 	if err != nil {
 		c.HTML(http.StatusInternalServerError, "500.html", gin.H{})
 		return

@@ -10,17 +10,23 @@ type Keeper interface {
 }
 
 type KeyBuilder interface {
-	Get() string
+	Get() (string, error)
+}
+
+type UUIDKeyBuilder interface {
+	Get() (string, error)
 }
 
 type Service struct {
 	Keeper
 	KeyBuilder
+	UUIDKeyBuilder
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
-		Keeper: NewKeeperService(repos.Keeper),
-		KeyBuilder: NewKeyBuilderService(),
+		Keeper:         NewKeeperService(repos.Keeper),
+		KeyBuilder:     NewKeyBuilderService(),
+		UUIDKeyBuilder: NewUUIDKeyBuilderService(),
 	}
 }

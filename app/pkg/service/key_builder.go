@@ -7,6 +7,6 @@ func NewKeyBuilderService() *KeyBuilderService {
 	return &KeyBuilderService{}
 }
 
-func (kbs *KeyBuilderService) Get() string {
-	return "test"
+func (kbs *KeyBuilderService) Get() (string, error) {
+	return "test", nil
 }
