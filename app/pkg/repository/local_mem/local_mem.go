@@ -1,4 +1,4 @@
-package repository
+package local_mem
 
 type Keeper interface {
 	Get(key string) (string, error)
@@ -6,13 +6,13 @@ type Keeper interface {
 	Clean(key string) error
 }
 
-type Repository struct {
+type LocalMemRepository struct {
 	mem map[string]string
 	Keeper
 }
 
-func NewRepository(mem map[string]string) *Repository {
-	return &Repository{
+func NewRepository(mem map[string]string) *LocalMemRepository {
+	return &LocalMemRepository{
 		mem:    mem,
 		Keeper: NewKeeperLocalMem(mem),
 	}

@@ -6,7 +6,7 @@ import (
 	"os/signal"
 	sc "secrets_keeper/app"
 	"secrets_keeper/app/pkg/handler"
-	"secrets_keeper/app/pkg/repository"
+	"secrets_keeper/app/pkg/repository/redis_repo"
 	"secrets_keeper/app/pkg/service"
 	"syscall"
 
@@ -21,9 +21,13 @@ func main() {
 		logrus.Fatalf("error init configs: %s", err.Error())
 	}
 
-	mem := make(map[string]string)
+	rdb := redis_repo.NewRedisClient(redis_repo.Config{
+		Host:     viper.GetString("rdb.host"),
+		Port:     viper.GetString("rdb.port"),
+		Password: viper.GetString("rdb.password"),
+	})
 
-	repos := repository.NewRepository(mem)
+	repos := redis_repo.NewRepository(rdb)
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 	srv := new(sc.Server)

@@ -1,6 +1,8 @@
-package repository
+package local_mem
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestKeeperSet(t *testing.T) {
 	keeper := KeeperLocalMem{mem: make(map[string]string)}
@@ -37,6 +39,6 @@ func TestKeeperClear(t *testing.T) {
 	keeper.Clean(key)
 
 	if _, ok := keeper.mem[key]; ok {
-		t.Error("clean dosn't work") 
+		t.Error("clean dosn't work")
 	}
 }

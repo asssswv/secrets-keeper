@@ -1,22 +1,20 @@
 package service
 
-import "secrets_keeper/app/pkg/repository"
+import (
+	"secrets_keeper/app/pkg/repository/redis_repo"
+)
 
 type KeeperService struct {
-	repo repository.Keeper
+	repo redis_repo.Keeper
 }
 
-func NewKeeperService(repo repository.Keeper) *KeeperService {
+func NewKeeperService(repo redis_repo.Keeper) *KeeperService {
 	return &KeeperService{repo: repo}
 }
 
 func (ks *KeeperService) Get(key string) (string, error) {
 	message, err := ks.repo.Get(key)
 	if err != nil {
-		return "", err
-	}
-
-	if err = ks.repo.Clean(key); err != nil {
 		return "", err
 	}
 

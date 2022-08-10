@@ -1,4 +1,4 @@
-package repository
+package local_mem
 
 import (
 	"errors"

@@ -9,11 +9,11 @@ func NewUUIDKeyBuilderService() *UUIDKeyBuilderService {
 	return &UUIDKeyBuilderService{}
 }
 
-func (ukbs *UUIDKeyBuilderService) Get() (string, error) {
-	uuid, err := uuid.NewRandom()
+func (_ *UUIDKeyBuilderService) Get() (string, error) {
+	key, err := uuid.NewRandom()
 	if err != nil {
 		return "", err
 	}
 
-	return uuid.String(), nil
+	return key.String(), nil
 }

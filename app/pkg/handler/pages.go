@@ -20,10 +20,12 @@ func (h *Handler) GetMessage(c *gin.Context) {
 
 		if err.Error() == "message not found" {
 			c.HTML(http.StatusNotFound, "404.html", gin.H{})
+			newErrorResponse(c, http.StatusNotFound, err.Error())
 			return
 		}
 
 		c.HTML(http.StatusInternalServerError, "500.html", gin.H{})
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 
@@ -36,12 +38,14 @@ func (h *Handler) SetMessage(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusInternalServerError, "500.html", gin.H{})
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 
 	err = h.services.Keeper.Set(key, message)
 	if err != nil {
 		c.HTML(http.StatusInternalServerError, "500.html", gin.H{})
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 

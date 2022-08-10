@@ -1,7 +1,7 @@
 package service
 
 import (
-	"secrets_keeper/app/pkg/repository"
+	"secrets_keeper/app/pkg/repository/redis_repo"
 )
 
 type Keeper interface {
@@ -23,7 +23,7 @@ type Service struct {
 	UUIDKeyBuilder
 }
 
-func NewService(repos *repository.Repository) *Service {
+func NewService(repos *redis_repo.Repository) *Service {
 	return &Service{
 		Keeper:         NewKeeperService(repos.Keeper),
 		KeyBuilder:     NewKeyBuilderService(),
