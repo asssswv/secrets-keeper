@@ -1,6 +1,6 @@
 package redis_repo
 
-import "github.com/go-redis/redis/v9"
+import "github.com/go-redis/redis/v8"
 
 type Keeper interface {
 	Get(key string) (string, error)

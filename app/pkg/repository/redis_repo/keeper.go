@@ -3,7 +3,7 @@ package redis_repo
 import (
 	"context"
 	"errors"
-	"github.com/go-redis/redis/v9"
+	"github.com/go-redis/redis/v8"
 )
 
 const TTL = 0
