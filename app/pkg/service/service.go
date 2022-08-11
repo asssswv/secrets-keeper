@@ -4,13 +4,11 @@ import (
 	"secrets_keeper/app/pkg/repository/redis_repo"
 )
 
+//go:generate mockgen -source=service.go -destination=mocks/mock.go
+
 type Keeper interface {
 	Get(key string) (string, error)
 	Set(key, message string) error
-}
-
-type KeyBuilder interface {
-	Get() (string, error)
 }
 
 type UUIDKeyBuilder interface {
@@ -19,14 +17,12 @@ type UUIDKeyBuilder interface {
 
 type Service struct {
 	Keeper
-	KeyBuilder
 	UUIDKeyBuilder
 }
 
 func NewService(repos *redis_repo.Repository) *Service {
 	return &Service{
 		Keeper:         NewKeeperService(repos.Keeper),
-		KeyBuilder:     NewKeyBuilderService(),
 		UUIDKeyBuilder: NewUUIDKeyBuilderService(),
 	}
 }

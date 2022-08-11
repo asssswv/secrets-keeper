@@ -21,7 +21,7 @@ func NewRedisKeeper(rdb *redis.Client) *RedisKeeper {
 }
 
 func (rk *RedisKeeper) Get(key string) (string, error) {
-	val, err := rk.rdb.GetDel(rk.ctx, key).Result()
+	val, err := rk.rdb.Get(rk.ctx, key).Result()
 	if err == redis.Nil {
 		return "", errors.New("message not found")
 	}
@@ -31,4 +31,8 @@ func (rk *RedisKeeper) Get(key string) (string, error) {
 
 func (rk *RedisKeeper) Set(key, message string) error {
 	return rk.rdb.Set(rk.ctx, key, message, TTL).Err()
+}
+
+func (rk *RedisKeeper) Clean(key string) error {
+	return rk.rdb.Del(rk.ctx, key).Err()
 }

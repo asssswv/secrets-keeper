@@ -13,6 +13,7 @@ require (
 	github.com/go-playground/validator/v10 v10.11.0 // indirect
 	github.com/go-redis/redis/v9 v9.0.0-beta.2 // indirect
 	github.com/goccy/go-json v0.9.10 // indirect
+	github.com/golang/mock v1.6.0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
@@ -34,9 +35,12 @@ require (
 	github.com/subosito/gotenv v1.4.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
+	golang.org/x/mod v0.4.2 // indirect
 	golang.org/x/net v0.0.0-20220728211354-c7608f3a8462 // indirect
 	golang.org/x/sys v0.0.0-20220731174439-a90be440212d // indirect
 	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/tools v0.1.1 // indirect
+	golang.org/x/xerrors v0.0.0-20220517211312-f3a8303e98df // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/ini.v1 v1.66.6 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

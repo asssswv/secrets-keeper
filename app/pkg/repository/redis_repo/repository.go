@@ -5,6 +5,7 @@ import "github.com/go-redis/redis/v9"
 type Keeper interface {
 	Get(key string) (string, error)
 	Set(key, message string) error
+	Clean(key string) error
 }
 
 type Repository struct {

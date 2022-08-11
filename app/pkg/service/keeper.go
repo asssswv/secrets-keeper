@@ -18,6 +18,10 @@ func (ks *KeeperService) Get(key string) (string, error) {
 		return "", err
 	}
 
+	if err = ks.repo.Clean(key); err != nil {
+		return "", err
+	}
+
 	return message, nil
 }
 
