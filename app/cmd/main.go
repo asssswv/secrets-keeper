@@ -48,6 +48,7 @@ func main() {
 }
 
 func InitConfig() error {
+	viper.SetConfigType("yml")
 	viper.AddConfigPath("configs")
 	viper.SetConfigName("config")
 	return viper.ReadInConfig()
