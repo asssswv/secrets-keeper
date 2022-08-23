@@ -4,7 +4,7 @@ import "github.com/go-redis/redis/v8"
 
 type Keeper interface {
 	Get(key string) (string, error)
-	Set(key, message string) error
+	Set(key, message string, ttl int) error
 	Clean(key string) error
 }
 

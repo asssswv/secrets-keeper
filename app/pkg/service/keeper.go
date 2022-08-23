@@ -21,6 +21,6 @@ func (ks *KeeperService) Get(key string) (string, error) {
 	return message, nil
 }
 
-func (ks *KeeperService) Set(key, message string) error {
-	return ks.repo.Set(key, message)
+func (ks *KeeperService) Set(key, message string, ttl int) error {
+	return ks.repo.Set(key, message, ttl)
 }

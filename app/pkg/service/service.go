@@ -8,7 +8,7 @@ import (
 
 type Keeper interface {
 	Get(key string) (string, error)
-	Set(key, message string) error
+	Set(key, message string, ttl int) error
 }
 
 type UUIDKeyBuilder interface {

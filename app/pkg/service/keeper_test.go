@@ -19,7 +19,7 @@ func TestKeeperService_Get(t *testing.T) {
 
 	testMessage := "test"
 	key, _ := services.UUIDKeyBuilder.Get()
-	_ = services.Set(key, testMessage)
+	_ = services.Set(key, testMessage, 2)
 
 	resultChannel := make(chan error, 2)
 

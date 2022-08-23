@@ -24,6 +24,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		"templates/message.html",
 		"templates/404.html",
 		"templates/500.html",
+		"templates/400.html",
 	)
 
 	router.GET("/", h.GetIndexPage)

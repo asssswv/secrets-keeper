@@ -1,11 +1,12 @@
 package redis_repo
 
 import (
+	"testing"
+
 	"github.com/go-redis/redis/v8"
 	"github.com/go-redis/redismock/v8"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestRedisKeeper_Get(t *testing.T) {
@@ -93,7 +94,7 @@ func TestRedisKeeper_Set(t *testing.T) {
 		t.Run(testCase.name, func(t *testing.T) {
 			testCase.mockBehavior(testCase.args)
 
-			err := r.Set(testCase.args.key, testCase.args.message)
+			err := r.Set(testCase.args.key, testCase.args.message, 0)
 			if testCase.wantErr {
 				assert.NotEqual(t, err, redis.Nil)
 			} else {
