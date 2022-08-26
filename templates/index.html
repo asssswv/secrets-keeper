@@ -41,11 +41,11 @@
 
       <div class="form-fields">
         <div class="form-field">
-          <td><textarea class="colortext" name="message" id="message" cols="50" rows="20" placeholder="Input your message"></textarea></td>
+          <td><textarea class="colortext" name="message" id="message" cols="50" rows="20" placeholder="Input your message" maxlength={{ .maxMessageLength}}></textarea></td>
         </div>
 
         <div class="form-field">
-          <td><input type="number" min="0" value="0" class="colortext" name="ttl" id="ttl" placeholder="Input message lifetime"></input></td>
+          <td><input type="number" min="0" value="0" class="colortext" name="ttl" id="ttl" placeholder="Input message lifetime" max={{ .maxTTL}}></input></td>
         </div>
       </div>
 

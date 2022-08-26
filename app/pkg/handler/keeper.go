@@ -9,7 +9,7 @@ import (
 )
 
 func (h *Handler) GetIndexPage(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.html", nil)
+	c.HTML(http.StatusOK, "index.html", gin.H{"maxTTL": 86400, "maxMessageLength": 1024})
 }
 
 func (h *Handler) GetMessage(c *gin.Context) {
@@ -54,6 +54,12 @@ func (h *Handler) SetMessage(c *gin.Context) {
 
 	err = h.services.Keeper.Set(key, message, t)
 	if err != nil {
+		if err.Error() == "message length too long!" || err.Error() == "ttl too long" {
+			c.HTML(http.StatusBadRequest, "400.html", gin.H{})
+			newErrorResponse(c, http.StatusBadRequest, err.Error())
+			return
+		}
+
 		c.HTML(http.StatusInternalServerError, "500.html", gin.H{})
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
