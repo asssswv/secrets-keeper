@@ -9,7 +9,6 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
-
 type RedisKeeper struct {
 	rdb *redis.Client
 	ctx context.Context
@@ -41,7 +40,7 @@ func (rk *RedisKeeper) Get(key string) (string, error) {
 }
 
 func (rk *RedisKeeper) Set(key, message string, ttl int) error {
-	return rk.rdb.Set(rk.ctx, key, message, time.Duration(ttl * 1000000000)).Err()
+	return rk.rdb.Set(rk.ctx, key, message, time.Duration(ttl*1000000000)).Err()
 }
 
 func (rk *RedisKeeper) Clean(key string) error {
