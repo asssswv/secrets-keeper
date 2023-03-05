@@ -13,4 +13,4 @@
 * ### Я пока не очень разбираюсь в System Designe, курс по распределенным системам у меня в Универе будет только осенью, поэтому я пока не очень знаю, что такое Kafka, Kassandra, ZooKeeper и прочее.
 * ### Я постарался аккуратно рассказать про архитектуру приложения, который я писал как пет-проект для себя.
 
-![Текст с описанием картинки]([../Screenshot from 2023-03-05 14-19-55.png](https://github.com/fallra1n/secrets-keeper/blob/main/infrastructure/Screenshot%20from%202023-03-05%2014-19-55.png))
+![Текст с описанием картинки](https://github.com/fallra1n/secrets-keeper/blob/main/infrastructure/Screenshot%20from%202023-03-05%2014-19-55.png)
